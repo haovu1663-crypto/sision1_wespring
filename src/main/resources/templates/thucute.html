@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Bé Thư Cute 💖</title>
+    <style>
+        /* Phong cách tổng thể cho trang */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Để hiệu ứng trái tim không tạo thanh cuộn */
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Nền chuyển màu hồng nhạt lãng mạn */
+            background: linear-gradient(135deg, #fff1f1 0%, #ffd1dc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Vùng chứa nội dung chính */
+        .message-container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.8); /* Nền trắng mờ */
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.5); /* Đổ bóng màu hồng */
+            backdrop-filter: blur(5px); /* Làm mờ nền phía sau */
+            border: 2px solid #ffb6c1;
+            max-width: 80%;
+            position: relative;
+            z-index: 10; /* Đảm bảo nội dung nằm trên trái tim */
+        }
+
+        /* Phong cách cho dòng chữ chính */
+        .love-message {
+            font-size: 3.5rem; /* Kích thước chữ lớn */
+            font-weight: 700;
+            color: #d81b60; /* Màu hồng đậm nổi bật */
+            margin: 0;
+            line-height: 1.3;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: textGlow 2s ease-in-out infinite alternate; /* Hiệu ứng chữ phát sáng */
+        }
+
+        /* Biểu tượng trái tim nhỏ bên cạnh chữ */
+        .love-message .heart-icon {
+            color: #e91e63;
+            font-size: 4rem;
+        }
+
+        /* Phụ đề nhỏ phía dưới (tùy chọn, bạn có thể xóa nếu không thích) */
+        .subtitle {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #880e4f;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Hiệu ứng hoạt hình chữ phát sáng */
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffb6c1, 0 0 20px #ffb6c1;
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #ffb6c1, 0 0 30px #ff80ab, 0 0 40px #ff80ab;
+            }
+        }
+
+        /* Phong cách cho các trái tim bay (được tạo bằng JS) */
+        .heart {
+            position: absolute;
+            color: #ff80ab;
+            font-size: 1.5rem;
+            opacity: 0.8;
+            pointer-events: none; /* Trái tim không cản trở việc click */
+            animation: floatUp linear infinite;
+        }
+
+        /* Hiệu ứng trái tim bay lên và mờ dần */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="message-container">
+    <h1 class="love-message">
+        Anh Yêu Bé Thư Cute Rất Nhìu <span class="heart-icon">💖</span>
+    </h1>
+    <p class="subtitle">...từ tận đáy lòng anh!</p>
+</div>
+
+<script>
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        // Sử dụng ký tự Unicode cho trái tim
+        heart.innerText = '❤';
+
+        // Vị trí ngang ngẫu nhiên
+        heart.style.left = Math.random() * 100 + 'vw';
+        // Kích thước ngẫu nhiên
+        heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+        // Thời gian bay ngẫu nhiên
+        heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+
+        document.body.appendChild(heart);
+
+        // Xóa trái tim sau khi bay xong để tránh quá nhiều phần tử
+        setTimeout(() => {
+            heart.remove();
+        }, 6000); // Khớp với thời gian animation tối đa
+    }
+
+    // Tạo trái tim mới mỗi 300ms
+    setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
