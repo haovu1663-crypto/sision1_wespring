@@ -1,27 +1,40 @@
 package re.sision1.bai3.controller;
 
-import lombok.Getter;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import re.sision1.bai3.model.Product;
-import re.sision1.bai3.service.StudentService;
+import re.sision1.bai3.service.ProdyctService;
 
 import java.util.List;
 
 @RestController// trả về html hoăc json
+@RequestMapping("/api/products")
 public class ProductController {
-    private StudentService studentService;
+    private ProdyctService  prodyctService;
 
-    public ProductController(StudentService studentService) {
-        this.studentService = studentService;
+
+    public ProductController(ProdyctService prodyctService) {
+        this.prodyctService = prodyctService;
     }
 
-    public List<Product> findAll() {
-       return studentService.findAll();
-    }
-    @GetMapping("/getProduct")
+
+    @GetMapping()
     public List<Product> getallProduct(){
-        return studentService.findAll();
+        return prodyctService.getProducts();
+
+    }
+    @PostMapping
+    public String addProduct(@RequestBody Product product){
+        prodyctService.addProduct(product);
+        return "success";
+    }
+    @PutMapping("/{id}")
+    public String updateProduct(@PathVariable int id, @RequestBody Product product){
+        prodyctService.updateProduct(id, product);
+        return "update success";
+    }
+    @DeleteMapping("/{id}")
+    public String deleteProduct(@PathVariable int id){
+        prodyctService.deleteProduct(id);
+        return "delete success";
     }
 }
